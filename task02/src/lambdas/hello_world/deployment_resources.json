@@ -3,72 +3,8 @@
     "predefined_policies": [],
     "principal_service": "lambda",
     "custom_policies": [
-      "lambda_hello_world_policy"
+      "lambda-basic-execution"
     ],
     "resource_type": "iam_role"
-  },
-  "lambda_hello_world_policy": {
-    "resource_type": "iam_policy",
-    "policy_content": {
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Action": [
-          "s3:Get*",
-          "s3:List*",
-          "lambda:InvokeFunction"
-        ]
-      }],
-      "Resource": "*",
-      "Effect": "Allow"
-    }
-  },
-  "example-api": {
-    "resource_name": "example-api",
-    "dependencies": [
-        {
-            "resource_name": "api-handler",
-            "resource_type": "lambda"
-        }
-    ],
-    "resource_type": "api_gateway",
-    "deploy_stage": "example",
-    "resources": {
-      "/hello": {
-            "enable_cors": true,
-            "GET": {
-                "integration_type": "lambda",
-                "lambda_alias": "${lambdas_alias_name}",
-                "authorization_type": "NONE",
-                "method_request_parameters": {
-                    "method.request.querystring.param1": true,
-                    "method.request.querystring.param2": true
-                },
-                "lambda_name": "api-handler",
-                "responses": [
-                    {
-                        "status_code": "200"
-                    },
-                    {
-                        "status_code": "404"
-                    }
-                ],
-                "integration_responses": [
-                    {
-                        "status_code": "200",
-                        "response_templates": {
-                            "application/json": "{\"statusCode\": 200,\n  \"message\": \"Hello from Lambda\"}"
-                        }
-                    },
-                    {
-                        "status_code": "404",
-                        "error_regex": ".*404:.*",
-                        "response_templates": {
-                            "application/json": "{\"statusCode\": 400, \"message\": \"Bad request syntax or unsupported method. Request path: {path}. HTTP method: {method}\"}"
-                        }
-                    }
-                ]
-            }
-          }
-        }
   }
 }
