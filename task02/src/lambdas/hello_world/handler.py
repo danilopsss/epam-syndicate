@@ -33,7 +33,7 @@ class HelloWorld(AbstractLambda):
             response["statusCode"] = 200
             response["message"] = "Hello from Lambda"
         else:
-            response["statusCode"] = 404
+            response["statusCode"] = 400
             response["message"] = (
                 "Bad request syntax or unsupported method. "
                 f"Request path: {self.get_path(event)}. "
