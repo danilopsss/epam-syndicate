@@ -14,6 +14,7 @@ class SnsHandler(AbstractLambda):
         Explain incoming event here
         """
         # todo implement business logic
+        print(event)
         return 200
     
 
