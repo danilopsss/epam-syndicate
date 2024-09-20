@@ -44,8 +44,8 @@
     "resource_type": "sns_topic",
     "region": "eu-central-1",
     "event_sources": [{
-      "resource_name": "sns_handler",
-      "resource_type": "lambda"
+      "target_rule": "lambda_topic",
+      "resource_type": "cloudwatch_rule_trigger"
     }]
   }
 }

@@ -10,7 +10,7 @@
   "lambda_path": "lambdas/sns_handler",
   "dependencies": [{
     "resource_type": "sns_topic",
-    "resource_name": "lambda_topic"
+    "resource_name": "async_queue"
   }],
   "event_sources": [{
     "resource_type": "sns_topic_trigger",
@@ -18,8 +18,7 @@
     "region": "eu-central-1"
   }],
   "env_variables": {},
-  "publish_version": true,
-  "alias": "${lambdas_alias_name}",
+  "publish_version": false,
   "url_config": {},
   "ephemeral_storage": 512,
   "logs_expiration": "${logs_expiration}"
