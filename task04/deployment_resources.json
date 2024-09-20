@@ -16,6 +16,7 @@
             "ssm:GetParameter",
             "kms:Decrypt",
             "sqs:*",
+            "sns:*",
             "s3:*"
           ],
           "Effect": "Allow",
@@ -38,5 +39,13 @@
     "policy": {},
     "redrive_policy": {},
     "content_based_deduplication": false
+  },
+  "lambda_topic": {
+    "resource_type": "sns_topic",
+    "region": "eu-central-1",
+    "event_sources": [{
+      "resource_name": "sns_handler",
+      "resource_type": "lambda"
+    }]
   }
 }
