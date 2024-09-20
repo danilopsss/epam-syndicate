@@ -17,27 +17,26 @@ class ApiHandler(AbstractLambda):
         """
         Explain incoming event here
         """
-        # print(event, context)
-        # region = os.environ.get("REGION", "eu-central-1")
-        # table_name = os.environ.get('TABLE_NAME')
-        # data = {
-        #     'id': str(uuid.uuid1()),
-        #     'event': str(event)
-        # }
+        print(event, context)
+        region = os.environ.get("REGION", "eu-central-1")
+        table_name = os.environ.get('TABLE_NAME')
+        data = {
+            'id': str(uuid.uuid1()),
+            'event': str(event)
+        }
 
-        # dynamodb = aws.resource('dynamodb',  region_name=region)
-        # table = dynamodb.Table(table_name)
+        dynamodb = aws.resource('dynamodb',  region_name=region)
+        table = dynamodb.Table(table_name)
         
-        # response = table.put_item(Item=data)
+        response = table.put_item(Item=data)
         
-        # return {
-        #     "statusCode": 200,
-        #     "headers": {
-        #         "Content-Type": "application/json"
-        #     },
-        #     "body": json.dumps(response, indent=4)
-        # }
-        return 200
+        return {
+            "statusCode": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": json.dumps(response, indent=4)
+        }
     
 
 HANDLER = ApiHandler()

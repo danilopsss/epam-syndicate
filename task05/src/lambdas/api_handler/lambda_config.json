@@ -15,7 +15,9 @@
   "event_sources": [],
   "env_variables": {"TABLE_NAME": "Events"},
   "publish_version": false,
-  "url_config": {},
+  "url_config": {
+    "auth_type": "NONE"
+  },
   "ephemeral_storage": 512,
   "logs_expiration": "${logs_expiration}"
 }
