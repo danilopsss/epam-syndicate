@@ -19,9 +19,9 @@ class ApiHandler(AbstractLambda):
         """
         print(event, context)
         region = os.environ.get("REGION", "eu-central-1")
-        table_name = os.environ.get('TABLE_NAME')
+        table_name = os.environ.get('TABLE_NAME', "Events")
         data = {
-            'id': str(uuid.uuid1()),
+            'id': str(uuid.uuid4()),
             'event': str(event)
         }
 
@@ -31,7 +31,7 @@ class ApiHandler(AbstractLambda):
         response = table.put_item(Item=data)
         
         return {
-            "statusCode": 200,
+            "statusCode": 201,
             "headers": {
                 "Content-Type": "application/json"
             },
