@@ -1,4 +1,5 @@
 import os
+import json
 import uuid
 import boto3 as aws
 from commons.log_helper import get_logger
@@ -27,9 +28,15 @@ class ApiHandler(AbstractLambda):
         dynamodb = aws.resource('dynamodb',  region_name=region)
         table = dynamodb.Table(table_name)
         
-        table.put_item(Item=data)
+        response = table.put_item(Item=data)
         
-        return 201
+        return {
+            "statusCode": 201,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": json.dumps(response, indent=4)
+         }
     
 
 HANDLER = ApiHandler()
