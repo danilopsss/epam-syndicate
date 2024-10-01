@@ -1,3 +1,4 @@
+import datetime
 import os
 import json
 import uuid
@@ -21,8 +22,10 @@ class ApiHandler(AbstractLambda):
         region = os.environ.get("REGION", "eu-central-1")
         table_name = os.environ.get('TABLE_NAME', "Events")
         data = {
-            'id': str(uuid.uuid4()),
-            'event': str(event)
+            "id": str(uuid.uuid4()), 
+            "principalId": 10,
+            "createdAt": datetime.datetime.now().isoformat(),
+            "body": json.dumps(event)
         }
 
         dynamodb = aws.resource('dynamodb',  region_name=region)
