@@ -32,10 +32,7 @@ class ApiHandler(AbstractLambda):
         
         return {
             "statusCode": 201,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "body": json.dumps(response, indent=4)
+            "event": json.dumps(response, indent=4)
         }
     
 
