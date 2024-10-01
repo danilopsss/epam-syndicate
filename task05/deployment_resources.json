@@ -4,6 +4,7 @@
       "Statement": [
         {
           "Action": [
+            "apigateway:POST",
             "s3:PutObject",
             "s3:ListBucket",
             "logs:CreateLogGroup",
