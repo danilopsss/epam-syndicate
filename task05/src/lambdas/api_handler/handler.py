@@ -21,6 +21,7 @@ class ApiHandler(AbstractLambda):
         print(event, context)
         region = os.environ.get("REGION", "eu-central-1")
         table_name = os.environ.get('TABLE_NAME', "Events")
+        event["body"] = event
         data = {
             "id": str(uuid.uuid4()), 
             "principalId": 10,
