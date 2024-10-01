@@ -1,6 +1,5 @@
 import os
 import uuid
-import json
 import boto3 as aws
 from commons.log_helper import get_logger
 from commons.abstract_lambda import AbstractLambda
