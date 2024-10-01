@@ -28,12 +28,9 @@ class ApiHandler(AbstractLambda):
         dynamodb = aws.resource('dynamodb',  region_name=region)
         table = dynamodb.Table(table_name)
         
-        response = table.put_item(Item=data)
+        table.put_item(Item=data)
         
-        return {
-            "statusCode": 201,
-            "event": json.dumps(response, indent=4)
-        }
+        return 201
     
 
 HANDLER = ApiHandler()
