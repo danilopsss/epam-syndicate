@@ -21,13 +21,15 @@ class AuditProducer(AbstractLambda):
         region = os.environ.get("REGION", "eu-central-1")
         table_name = os.environ.get('TABLE_NAME')
         data = {
-            "id": str(uuid.uuid4()), 
-            "itemKey": "CACHE_TTL_SEC",
-            "modificationTime": datetime.now().isoformat(),
-            "updatedAttribute": "value",
-            "oldValue": event,
-            "newValue": {"key": "CACHE_TTL_SEC", "value": 3600}
-        } 
+                "item": {
+                "id": str(uuid.uuid4()), 
+                "itemKey": "CACHE_TTL_SEC",
+                "modificationTime": datetime.now().isoformat(),
+                "updatedAttribute": "value",
+                "oldValue": event,
+                "newValue": {"key": "CACHE_TTL_SEC", "value": 3600}
+            }
+        }
 
         dynamodb = aws.resource('dynamodb',  region_name=region)
         table = dynamodb.Table(table_name)
