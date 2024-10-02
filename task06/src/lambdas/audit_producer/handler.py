@@ -25,8 +25,8 @@ class AuditProducer(AbstractLambda):
             "itemKey": "CACHE_TTL_SEC",
             "modificationTime": datetime.now().isoformat(),
             "updatedAttribute": "value",
-            "oldValue": 3600,
-            "newValue": 1800
+            "oldValue": 1800,
+            "newValue": 3600
         } 
 
         dynamodb = aws.resource('dynamodb',  region_name=region)
