@@ -19,7 +19,7 @@ class AuditProducer(AbstractLambda):
         Explain incoming event here
         """
         region = os.environ.get("REGION", "eu-central-1")
-        table_name = os.environ.get('TABLE_NAME')
+        table_name = os.environ.get('TABLE_NAME', "Audit")
         data = {
                 "id": str(uuid.uuid4()), 
                 "itemKey": "CACHE_TTL_SEC",
